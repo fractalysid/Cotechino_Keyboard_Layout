@@ -1,0 +1,389 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include "./boards/shields/lucy/italian.keycodes"
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define DEFAULT                 0
+
+#define UTILITY                 1
+
+#define SYMBOLS                 2
+
+#define NUM_FUNC                3
+
+#define KEYBOARD                4
+
+#define QWERTY                  5
+
+#define GAMING                  6
+
+&mt {
+    //tapping-term-ms = <300>;
+    //quick_tap_ms = <0>;
+    //flavor = "tap-preferred";
+    //retro-tap;
+};
+
+/ {
+
+    macros {
+           gmail: gmail {
+               label = "gmail_email";
+               compatible = "zmk,behavior-macro";
+               #binding-cells = <0>;
+               wait-ms = <30>;
+               tap-ms = <40>;
+               bindings
+                   = <
+                   &kp S &kp A &kp B &kp B &kp I &kp O
+                   >
+                   ;
+           };
+
+            // I don't know why but this doesn't work
+           linux_reboot: linux_reboot {
+                label = "reboot_linux_system_with_SysRq";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                wait-ms = <500>;
+                tap-ms = <40>;
+                bindings
+                     = <&macro_press &kp LALT>
+                     , <&macro_press &kp PRINTSCREEN>
+                     , <&kp R &kp E>
+                     , <&kp I>
+                     , <&kp S>
+                     , <&kp U>
+                     , <&kp B>
+                     , <&macro_release &kp LALT>
+                     , <&macro_release &kp PRINTSCREEN>
+                     ;
+           };
+
+           macro_par: macro_parentheses {
+               label = "macro_parentheses";
+               compatible = "zmk,behavior-macro";
+               #binding-cells = <0>;
+               wait-ms = <30>;
+               tap-ms = <40>;
+               bindings
+                   = <
+                   &kp IT_LPAR &kp IT_RPAR
+                   >
+                   ;
+           };
+
+           macro_bkt: macro_brackets {
+               label = "macro_brackets";
+               compatible = "zmk,behavior-macro";
+               #binding-cells = <0>;
+               wait-ms = <30>;
+               tap-ms = <40>;
+               bindings
+                   = <
+                   &kp IT_LBKT &kp IT_RBKT
+                   >
+                   ;
+           };
+
+           macro_brc: macro_braces {
+               label = "macro_braces";
+               compatible = "zmk,behavior-macro";
+               #binding-cells = <0>;
+               wait-ms = <30>;
+               tap-ms = <40>;
+               bindings
+                   = <
+                   &kp IT_LBRC &kp IT_RBRC
+                   >
+                   ;
+           };
+
+           macro_ang: macro_angulars {
+               label = "macro_angulars";
+               compatible = "zmk,behavior-macro";
+               #binding-cells = <0>;
+               wait-ms = <30>;
+               tap-ms = <40>;
+               bindings
+                   = <
+                   &kp IT_LESS &kp IT_GREAT
+                   >
+                   ;
+           };
+       };
+
+    combos {
+        compatible = "zmk,combos";
+
+        // Get back to default layer by pressing both thumb keys
+        combo_escape_qwerty {
+            timeout-ms = <100>;
+            layers= <QWERTY>;
+            key-positions = <30 35>;
+            bindings = <&to DEFAULT>;
+        };
+
+        // easier to hit
+        combo_escape_qwerty2 {
+            timeout-ms = <150>;
+            layers= <QWERTY>;
+            key-positions = <16 17 18 19>;
+            bindings = <&to DEFAULT>;
+        };
+
+        // combo to tab in qwerty
+        combo_tab_qwerty {
+            timeout-ms = <75>;
+            layers = <QWERTY>;
+            key-positions = <10 11>;
+            bindings = <&kp TAB>;
+        };
+   };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_keyboard_layer {
+            if-layers = <UTILITY SYMBOLS>;
+            then-layer = <NUM_FUNC>;
+        };
+    };
+
+    behaviors {
+
+        // Behaviors for home row layers toggle
+
+        llt: left_layer_toggle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_LAYERS_LEFT";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;    // 250
+            quick_tap_ms = <80>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;    // <---[[right-hand keys]]
+        };
+
+        rlt: right_layer_toggle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HOMEROW_LAYERS_RIGHT";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;    //250
+            quick_tap_ms = <80>;
+            flavor = "tap-preferred";
+            bindings = <&mo>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;    // <---[[left-hand keys]]
+
+        };
+
+        // Behaviors for mods in the bottom row
+
+        lm: left_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MODS_LEFT";
+            #binding-cells = <2>;
+            //flavor = "tap-unless-interrupted";
+            flavor = "tap-preferred";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <80>;        // 125
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;    // <---[[right-hand keys]]
+        };
+
+        rm: right_mods {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MODS_RIGHT";
+            #binding-cells = <2>;
+            //flavor = "tap-unless-interrupted";
+            flavor = "tap-preferred";
+            tapping-term-ms = <175>;
+            quick-tap-ms = <80>;        // 125
+            bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;    // <---[[left-hand keys]]
+       };
+
+    // Layer on left thumb is for quick access to symbols used while typing so I need a shorter window for triggering
+    // the hold behavior. This is possible as RETURN is not used in the middle of something. Balanced behavior is perfect here
+        qlt: quick_layer_toggle {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LEFT_LAYER_TOGGLE";
+            #binding-cells = <2>;
+            tapping-term-ms = <125>;
+            quick-tap-ms = <0>;
+            flavor = "balanced";
+            bindings = <&mo>, <&kp>;
+       };
+
+       // Tap-Dances for accented letters
+        td_a_lm: tap_dance_a_left_mod {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_A_LM";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp A>, <&kp IT_AGRV>;
+        };
+
+        td_o_rm: tap_dance_o_right_mod {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_O_LM";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp O>, <&kp IT_OGRV>;
+        };
+
+        td_e: tap_dance_e {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_E";
+            #binding-cells = <0>;
+            tapping-term-ms = <160>;
+            bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
+        };
+
+        td_i: tap_dance_i {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_I";
+            #binding-cells = <0>;
+            tapping-term-ms = <160>;
+            bindings = <&kp I>, <&kp IT_IGRV>;
+        };
+
+        td_u: tap_dance_u {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_U";
+            #binding-cells = <0>;
+            tapping-term-ms = <160>;
+            bindings = <&kp U>, <&kp IT_UGRV>;
+        };
+
+        td_par: tap_dance_parentheses {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_PARENTHESES";
+            #binding-cells = <0>;
+            tapping-term-ms = <160>;
+            bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
+        };
+
+        td_bkt: tap_dance_brackets {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_BRACKETS";
+            #binding-cells = <0>;
+            tapping-term-ms = <160>;
+            bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
+        };
+
+        td_brc: tap_dance_braces {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_BRACES";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
+        };
+
+        td_ang: tap_dance_angulars {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_ANGULARS";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
+        };
+
+// per non mettere il delete in un altro layer posso fare Shift+Backspace
+/*                bspc_del: backspace_delete {
+                    compatible = "zmk,behavior-mod-morph";
+                    label = "BACKSPACE_DELETE";
+                    #binding-cells = <0>;
+                    bindings = <&kp BACKSPACE>, <&kp DELETE>;
+                    mods = <(MOD_LSFT|MOD_RSFT)>;
+                    keep-mods = <(MOD_RSFT)>;
+                };*/
+    };
+
+// No longer restricted to italian layout as accented letters are managed with double taps
+// I may consider using different keys instead of the A,E,I,O,U in order to restore the shift in the home row (a and o)
+        keymap {
+                compatible = "zmk,keymap";
+
+//  DEFAULT layer with COLEMAK-DH
+       		default_layer {
+		bindings = <
+		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &td_u               &kp Y               &kp BKSP
+		&td_a_lm            &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &td_e               &td_i               &td_o_rm
+		&lm LSHFT Z         &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHFT IT_SQUOT
+                                                &qlt SYMBOLS RET    &to GAMING          &none           &none               &mo KEYBOARD        &lt UTILITY SPC
+		>;
+		};
+
+// UTILITY LAYER
+// &kp K_COPY &kp K_PASTE &kp K_CUT don't work
+		    utility_layer {
+		bindings = <
+		&kp ESC             &kp CAPS            &caps_word          &kp HOME            &kp INSERT      &kp PRINTSCREEN     &kp END             &kp PAGE_UP         &kp PAGE_DOWN       &kp DEL
+		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
+		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &none               &kp LG(LC(SPACE))   &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
+                                                &trans              &trans              &trans          &trans              &trans              &none
+		>;
+		};
+
+// SYMBOLS
+           symbols_layer {
+		bindings = <
+		&kp IT_EXCL         &kp IT_DQUOT        &none               &none               &trans          &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
+		&td_ang             &td_brc             &td_bkt             &td_par             &trans          &trans              &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
+		&kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE        &trans          &kp IT_BKTK         &kp IT_AND          &kp IT_BSLH         &kp IT_AST          &kp IT_PLUS
+                                                &none               &trans              &trans          &trans              &trans              &trans
+		>;
+		};
+
+// NUMBERS / FUNCTIONS
+		    numbers_functions_layer {
+		bindings = <
+		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
+        &kp N0              &kp N1              &kp N2              &kp N3             &trans          &none               &kp F4              &kp F5              &kp F6              &kp F11
+        &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &trans              &kp F1              &kp F2              &kp F3              &kp F12
+                                                &trans              &trans             &trans          &trans              &trans              &trans
+		>;
+		};
+
+// KEYBOARD LAYER
+// reset and bootloader must be present on both sides as they only work on the side where they are pressed
+		    keyboard_layer {
+		bindings = <
+		&reset              &bootloader         &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &none           &none               &kp C_BRI_INC       &kp C_BRI_DEC       &bootloader         &reset
+		&kp K_STOP2         &kp K_PREV          &kp K_NEXT          &kp K_PLAY_PAUSE    &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
+		&bt BT_CLR          &none               &none               &none               &none           &none               &to QWERTY          &none               &none               &bt BT_SEL 4
+                                                &trans              &trans              &trans          &trans              &trans              &trans
+		>;
+		};
+
+//  QWERTY, mainly for gaming or letting others try the keyboard
+       		qwerty_layer {
+		bindings = <
+		&kp Q               &kp W               &kp E               &kp R               &kp T           &kp Y               &kp U               &kp I               &kp O               &kp P
+		&kp A               &kp S               &kp D               &kp F               &kp G           &kp H               &kp J               &kp K               &kp L               &kp BKSP
+		&kp Z               &kp X               &kp C               &kp V               &kp B           &kp M               &mt LGUI N          &mt LALT CMMA       &mt LCTRL DOT       &mt LSHFT IT_MINUS
+                                                &kp SPC             &to DEFAULT         &none           &none               &none               &kp RET
+		>;
+		};
+
+
+//  GAMING layer, work in progress, based on gaming experience
+           	gaming_layer {
+    	bindings = <
+    	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp UP              &kp U               &kp I
+    	&kp LSHIFT          &kp A               &kp S               &kp D               &kp F           &kp G               &kp LEFT            &kp DOWN            &kp RIGHT           &kp P
+    	&kp LCTRL           &kp Z               &kp X               &kp C               &kp V           &kp B               &kp M               &kp N               &kp L               &kp J
+                                                &kp SPC             &to DEFAULT         &none           &none               &none               &kp RET
+    	>;
+    	};
+    };
+
+};
+
