@@ -184,7 +184,7 @@
                     compatible = "zmk,behavior-hold-tap";
                     label = "AUTO_SHIFT";
                     #binding-cells = <2>;
-                    tapping_term_ms = <135>;
+                    tapping_term_ms = <180>;
                     quick_tap_ms = <0>;
                     flavor = "tap-preferred";
                     bindings = <&kp>, <&kp>;
@@ -266,13 +266,6 @@
        };
 
        // Tap-Dances for accented letters
-        td_a_lm: tap_dance_a_left_mod {
-           compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_A_LM";
-            #binding-cells = <0>;
-            tapping-term-ms = <180>;
-            bindings = <&kp A>, <&kp IT_AGRV>;
-        };
 
         td_oa: tap_dance_o_a {
            compatible = "zmk,behavior-tap-dance";
@@ -282,14 +275,6 @@
             bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
         };
 
-        td_o_rm: tap_dance_o_right_mod {
-           compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_O_LM";
-            #binding-cells = <0>;
-            tapping-term-ms = <180>;
-            bindings = <&kp O>, <&kp IT_OGRV>;
-        };
-
         td_e: tap_dance_e {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_E";
@@ -297,14 +282,6 @@
             tapping-term-ms = <160>;
             //bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
             bindings = <&kp IT_EGRV>, <&kp IT_EACU>;
-        };
-
-        td_i: tap_dance_i {
-           compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_I";
-            #binding-cells = <0>;
-            tapping-term-ms = <160>;
-            bindings = <&kp I>, <&kp IT_IGRV>;
         };
 
         td_iu: tap_dance_i_u {
@@ -365,40 +342,47 @@
 
     };
 
-// No longer restricted to italian layout as accented letters are managed with double taps
-// I may consider using different keys instead of the A,E,I,O,U in order to restore the shift in the home row (a and o)
         keymap {
                 compatible = "zmk,keymap";
 
-//  DEFAULT layer with COLEMAK-DH
+/*********************************************
+*   DEFAULT layer with COLEMAK-DH
+**********************************************/
+
        		default_layer {
 		bindings = <
-		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
-		&lm LSHFT A         &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHFT O
-		&lm LSHFT Z         &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHFT IT_SQUOT
+		AS(Q)               AS(W)               AS(F)               AS(P)               AS(B)           AS(J)               AS(L)               AS(U)               AS(Y)               &bspc_del
+		AS(A)               AS(R)               AS(S)               AS(T)               AS(G)           AS(M)               AS(N)               AS(E)               AS(I)               AS(O)
+		AS(Z)               AS(X)               AS(C)               AS(D)               AS(V)           AS(K)               AS(H)               AS(CMMA)            AS(DOT)             AS(IT_SQUOT)
                                                 &qlt SYMBOLS RET    &to GAMING          &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
 		};
 
-// UTILITY LAYER
+/*********************************************
+*   UTILITY LAYER
+*********************************************/
 // &kp K_COPY &kp K_PASTE &kp K_CUT don't work
+
 		    utility_layer {
 		bindings = <
-		&kp ESC             &kp CAPS            &caps_word          &kp HOME            &kp INSERT      &kp PRINTSCREEN     &kp END             &kp PAGE_UP         &kp PAGE_DOWN       &kp DEL
+		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &none               &kp END             &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
-		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &none               &kp LG(LC(SPACE))   &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
+		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LGUI            &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
                                                 &trans              &trans              &trans          &trans              &trans              &none
 		>;
 		};
 
-// SYMBOLS
+/*********************************************
+*   SYMBOLS
+*********************************************/
+
 // &td_ang             &td_brc             &td_bkt             &td_par
 // &kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE
            symbols_layer {
 		bindings = <
-		&kp IT_EXCL         &kp IT_DQUOT        &none               &none               &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
+		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_BSLH         &kp IT_CARET        &none           &none               &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
 		&td_ang2            &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &mt IT_UNDER IT_MINUS        &kp IT_UNDER
-		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &trans          &kp IT_BKTK         &kp IT_AND          &kp IT_BSLH         &kp IT_AST          &kp IT_PLUS
+		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &kp IT_TILDE    &kp IT_BKTK         &kp IT_AND          &kp IT_PIPE         &kp IT_AST          &kp IT_PLUS
                                                 &none               &trans              &trans          &trans              &trans              &trans
 		>;
 		};
