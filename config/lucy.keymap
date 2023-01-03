@@ -34,6 +34,10 @@
 
 / {
 
+/********************************************************
+*   MACROS
+*********************************************************/
+
     macros {
            gmail: gmail {
                label = "gmail_email";
@@ -121,6 +125,10 @@
            };
        };
 
+/********************************************************
+*   COMBOS
+*********************************************************/
+
     combos {
         compatible = "zmk,combos";
 
@@ -149,6 +157,10 @@
         };
    };
 
+/********************************************************
+*   CONDITIONAL LAYERS
+*********************************************************/
+
     conditional_layers {
         compatible = "zmk,conditional-layers";
         tri_keyboard_layer {
@@ -157,7 +169,38 @@
         };
     };
 
+/********************************************************
+*   BEHAVIORS
+*********************************************************/
+
     behaviors {
+
+        /***********************************************
+        *   AUTOSHIFT
+        ***********************************************/
+        #define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+
+        as: auto_shift {
+                    compatible = "zmk,behavior-hold-tap";
+                    label = "AUTO_SHIFT";
+                    #binding-cells = <2>;
+                    tapping_term_ms = <135>;
+                    quick_tap_ms = <0>;
+                    flavor = "tap-preferred";
+                    bindings = <&kp>, <&kp>;
+        };
+
+        /*************************************************/
+
+        // Delete with backspace + shift
+        bspc_del: backspace_delete {
+                    compatible = "zmk,behavior-mod-morph";
+                    label = "BACKSPACE_DELETE";
+                    #binding-cells = <0>;
+                    bindings = <&kp BACKSPACE>, <&kp DELETE>;
+                    mods = <(MOD_LSFT|MOD_RSFT)>;
+                    keep-mods = <0>;
+        };
 
         // Behaviors for home row layers toggle
 
@@ -231,6 +274,14 @@
             bindings = <&kp A>, <&kp IT_AGRV>;
         };
 
+        td_oa: tap_dance_o_a {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_O_A";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
+        };
+
         td_o_rm: tap_dance_o_right_mod {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_O_LM";
@@ -244,7 +295,8 @@
             label = "TAP_DANCE_E";
             #binding-cells = <0>;
             tapping-term-ms = <160>;
-            bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
+            //bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
+            bindings = <&kp IT_EGRV>, <&kp IT_EACU>;
         };
 
         td_i: tap_dance_i {
@@ -255,12 +307,12 @@
             bindings = <&kp I>, <&kp IT_IGRV>;
         };
 
-        td_u: tap_dance_u {
+        td_iu: tap_dance_i_u {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_U";
+            label = "TAP_DANCE_I_U";
             #binding-cells = <0>;
             tapping-term-ms = <160>;
-            bindings = <&kp U>, <&kp IT_UGRV>;
+            bindings = <&kp IT_IGRV>, <&kp IT_UGRV>;
         };
 
         td_par: tap_dance_parentheses {
@@ -295,15 +347,22 @@
             bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
         };
 
-// per non mettere il delete in un altro layer posso fare Shift+Backspace
-/*                bspc_del: backspace_delete {
-                    compatible = "zmk,behavior-mod-morph";
-                    label = "BACKSPACE_DELETE";
-                    #binding-cells = <0>;
-                    bindings = <&kp BACKSPACE>, <&kp DELETE>;
-                    mods = <(MOD_LSFT|MOD_RSFT)>;
-                    keep-mods = <(MOD_RSFT)>;
-                };*/
+        td_ang2: tap_dance_angulars_simplifed {
+           compatible = "zmk,behavior-tap-dance";
+           label = "TAP_DANCE_ANGULARS_SIMPLIFIED";
+           #binding-cells = <0>;
+           tapping-term-ms = <200>;
+           bindings = <&kp IT_LESS>, <&kp IT_GREAT>;
+        };
+
+        td_currencies: tap_dance_currencies {
+           compatible = "zmk,behavior-tap-dance";
+           label = "TAP_DANCE_CURRENCIES";
+           #binding-cells = <0>;
+           tapping-term-ms = <200>;
+           bindings = <&kp IT_USD>, <&kp IT_EUR>, <&kp IT_PND>, <&kp IT_YEN>;
+        };
+
     };
 
 // No longer restricted to italian layout as accented letters are managed with double taps
@@ -314,8 +373,8 @@
 //  DEFAULT layer with COLEMAK-DH
        		default_layer {
 		bindings = <
-		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &td_u               &kp Y               &kp BKSP
-		&td_a_lm            &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &td_e               &td_i               &td_o_rm
+		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
+		&lm LSHFT A         &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHFT O
 		&lm LSHFT Z         &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHFT IT_SQUOT
                                                 &qlt SYMBOLS RET    &to GAMING          &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
@@ -333,11 +392,13 @@
 		};
 
 // SYMBOLS
+// &td_ang             &td_brc             &td_bkt             &td_par
+// &kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE
            symbols_layer {
 		bindings = <
-		&kp IT_EXCL         &kp IT_DQUOT        &none               &none               &trans          &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
-		&td_ang             &td_brc             &td_bkt             &td_par             &trans          &trans              &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
-		&kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE        &trans          &kp IT_BKTK         &kp IT_AND          &kp IT_BSLH         &kp IT_AST          &kp IT_PLUS
+		&kp IT_EXCL         &kp IT_DQUOT        &none               &none               &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
+		&td_ang2            &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &mt IT_UNDER IT_MINUS        &kp IT_UNDER
+		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &trans          &kp IT_BKTK         &kp IT_AND          &kp IT_BSLH         &kp IT_AST          &kp IT_PLUS
                                                 &none               &trans              &trans          &trans              &trans              &trans
 		>;
 		};
