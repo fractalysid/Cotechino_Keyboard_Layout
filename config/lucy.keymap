@@ -274,7 +274,7 @@
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_E";
             #binding-cells = <0>;
-            tapping-term-ms = <160>;
+            tapping-term-ms = <200>;
             //bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
             bindings = <&kp IT_EGRV>, <&kp IT_EACU>;
         };
@@ -283,7 +283,7 @@
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_O_A";
             #binding-cells = <0>;
-            tapping-term-ms = <180>;
+            tapping-term-ms = <200>;
             bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
         };
 
@@ -291,7 +291,7 @@
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_I_U";
             #binding-cells = <0>;
-            tapping-term-ms = <180>;
+            tapping-term-ms = <200>;
             bindings = <&kp IT_IGRV>, <&kp IT_UGRV>;
         };
 
@@ -299,16 +299,19 @@
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_PARENTHESES";
             #binding-cells = <0>;
-            tapping-term-ms = <160>;
-            bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
+            tapping-term-ms = <180>;
+            //bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
+            bindings = <&kp IT_LPAR>, <&kp IT_RPAR>;
+
         };
 
         td_bkt: tap_dance_brackets {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_BRACKETS";
             #binding-cells = <0>;
-            tapping-term-ms = <160>;
-            bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
+            tapping-term-ms = <180>;
+            //bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
+            bindings = <&kp IT_LBKT>, <&kp IT_RBKT>;
         };
 
         td_brc: tap_dance_braces {
@@ -316,22 +319,16 @@
             label = "TAP_DANCE_BRACES";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
-            bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
+            //bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
+            bindings = <&kp IT_LBRC>, <&kp IT_RBRC>;
         };
 
-        td_ang: tap_dance_angulars {
-           compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_ANGULARS";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
-        };
-
-        td_ang2: tap_dance_angulars_simplifed {
+        td_ang: tap_dance_angulars_simplifed {
            compatible = "zmk,behavior-tap-dance";
            label = "TAP_DANCE_ANGULARS_SIMPLIFIED";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
+           //bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
            bindings = <&kp IT_LESS>, <&kp IT_GREAT>;
         };
 
@@ -384,7 +381,7 @@
            symbols_layer {
 		bindings = <
 		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_BSLH         &kp IT_CARET        &none           &none               &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
-		&td_ang2            &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &mt IT_UNDER IT_MINUS        &kp IT_UNDER
+		&td_ang             &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
 		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &kp IT_TILDE    &kp IT_BKTK         &kp IT_AND          &kp IT_PIPE         &kp IT_AST          &kp IT_PLUS
                                                 &none               &trans              &trans          &trans              &trans              &trans
 		>;
