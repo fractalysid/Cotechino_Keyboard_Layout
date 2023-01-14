@@ -25,6 +25,8 @@
 
 #define GAMING                  6
 
+#define EXTRA                   7
+
 &mt {
     //tapping-term-ms = <300>;
     //quick_tap_ms = <0>;
@@ -185,7 +187,8 @@
                     label = "AUTO_SHIFT";
                     #binding-cells = <2>;
                     tapping_term_ms = <180>;
-                    quick_tap_ms = <0>;
+                    quick_tap_ms = <125>;
+                    global-quick-tap;
                     flavor = "tap-preferred";
                     bindings = <&kp>, <&kp>;
         };
@@ -267,14 +270,6 @@
 
        // Tap-Dances for accented letters
 
-        td_oa: tap_dance_o_a {
-           compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_O_A";
-            #binding-cells = <0>;
-            tapping-term-ms = <180>;
-            bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
-        };
-
         td_e: tap_dance_e {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_E";
@@ -284,11 +279,19 @@
             bindings = <&kp IT_EGRV>, <&kp IT_EACU>;
         };
 
+        td_oa: tap_dance_o_a {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_O_A";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
+        };
+
         td_iu: tap_dance_i_u {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_I_U";
             #binding-cells = <0>;
-            tapping-term-ms = <160>;
+            tapping-term-ms = <180>;
             bindings = <&kp IT_IGRV>, <&kp IT_UGRV>;
         };
 
@@ -351,10 +354,10 @@
 
        		default_layer {
 		bindings = <
-		AS(Q)               AS(W)               AS(F)               AS(P)               AS(B)           AS(J)               AS(L)               AS(U)               AS(Y)               &bspc_del
-		AS(A)               AS(R)               AS(S)               AS(T)               AS(G)           AS(M)               AS(N)               AS(E)               AS(I)               AS(O)
-		AS(Z)               AS(X)               AS(C)               AS(D)               AS(V)           AS(K)               AS(H)               AS(CMMA)            AS(DOT)             AS(IT_SQUOT)
-                                                &qlt SYMBOLS RET    &to GAMING          &none           &none               &mo KEYBOARD        &lt UTILITY SPC
+		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
+		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA        &rm LCTRL DOT        &rm LSHIFT IT_SQUOT
+                                                &qlt SYMBOLS RET    &mo EXTRA           &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
 		};
 
@@ -365,7 +368,7 @@
 
 		    utility_layer {
 		bindings = <
-		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &none               &kp END             &kp DEL
+		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &kp END             &kp END             &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
 		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LGUI            &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
                                                 &trans              &trans              &trans          &trans              &trans              &none
@@ -387,7 +390,10 @@
 		>;
 		};
 
-// NUMBERS / FUNCTIONS
+/*********************************************
+*   NUMBERS/SYMBOLS
+*********************************************/
+
 		    numbers_functions_layer {
 		bindings = <
 		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
@@ -403,12 +409,15 @@
 		bindings = <
 		&reset              &bootloader         &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &none           &none               &kp C_BRI_INC       &kp C_BRI_DEC       &bootloader         &reset
 		&kp K_STOP2         &kp K_PREV          &kp K_NEXT          &kp K_PLAY_PAUSE    &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
-		&bt BT_CLR          &none               &none               &none               &none           &none               &to QWERTY          &none               &none               &bt BT_SEL 4
+		&bt BT_CLR          &none               &none               &none               &none           &none               &to QWERTY          &to GAMING          &none               &bt BT_SEL 4
                                                 &trans              &trans              &trans          &trans              &trans              &trans
 		>;
 		};
 
-//  QWERTY, mainly for gaming or letting others try the keyboard
+/*********************************************
+*   QWERTY
+*********************************************/
+
        		qwerty_layer {
 		bindings = <
 		&kp Q               &kp W               &kp E               &kp R               &kp T           &kp Y               &kp U               &kp I               &kp O               &kp P
@@ -418,8 +427,10 @@
 		>;
 		};
 
+/*********************************************
+*   GAMING
+*********************************************/
 
-//  GAMING layer, work in progress, based on gaming experience
            	gaming_layer {
     	bindings = <
     	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp UP              &kp U               &kp I
@@ -428,6 +439,22 @@
                                                 &kp SPC             &to DEFAULT         &none           &none               &none               &kp RET
     	>;
     	};
+
+/*********************************************
+*   EXTRA
+*********************************************/
+
+        #define NONE_ROW &none &none &none &none &none
+
+           	extra_layer {
+    	bindings = <
+    	NONE_ROW NONE_ROW
+    	&none &none &kp LSHIFT &kp LCTRL &none NONE_ROW
+    	NONE_ROW NONE_ROW
+        &none             &none         &none           &none               &none               &none
+    	>;
+    	};
+
     };
 
 };
