@@ -170,6 +170,7 @@
             key-positions = <10 11>;
             bindings = <&kp TAB>;
         };
+
    };
 
 /********************************************************
@@ -186,6 +187,7 @@
             if-layers = <UTILITY SYMBOLS_US>;
             then-layer = <NUM_FUNC>;
         };
+
     };
 
 /********************************************************
@@ -412,7 +414,7 @@
        		default_layer {
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
-		&lm LSHIFT A        &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHIFT O
+		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
 		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
                                                 &qlt SYMBOLS RET    &mo EXTRA           &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
@@ -564,6 +566,7 @@
         &none             &none         &none           &none               &none               &none
     	>;
     	};
+
     };
 
 };
