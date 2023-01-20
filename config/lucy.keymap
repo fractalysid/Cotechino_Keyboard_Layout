@@ -27,6 +27,19 @@
 
 #define EXTRA                   7
 
+// ------------------------------
+// I need a copy for every layer because I cannot activate lower number layers
+
+#define DEFAULT_US              8
+
+#define SYMBOLS_US              9
+
+#define UTILITY_US              10
+
+#define EXTRA_US                11
+
+
+// Global mod-tap configuration
 &mt {
     //tapping-term-ms = <300>;
     //quick_tap_ms = <0>;
@@ -169,6 +182,10 @@
             if-layers = <UTILITY SYMBOLS>;
             then-layer = <NUM_FUNC>;
         };
+        tri_keyboard_us_layer {
+            if-layers = <UTILITY SYMBOLS_US>;
+            then-layer = <NUM_FUNC>;
+        };
     };
 
 /********************************************************
@@ -302,7 +319,15 @@
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
             bindings = <&kp IT_LPAR>, <&kp IT_RPAR>;
+        };
 
+        td_par_us: tap_dance_parentheses_us {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_PARENTHESES_US";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            //bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
+            bindings = <&kp LPAR>, <&kp RPAR>;
         };
 
         td_bkt: tap_dance_brackets {
@@ -314,6 +339,15 @@
             bindings = <&kp IT_LBKT>, <&kp IT_RBKT>;
         };
 
+        td_bkt_us: tap_dance_brackets_us {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_BRACKETS_US";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            //bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
+            bindings = <&kp LBKT>, <&kp RBKT>;
+        };
+
         td_brc: tap_dance_braces {
            compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_BRACES";
@@ -321,6 +355,15 @@
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
             bindings = <&kp IT_LBRC>, <&kp IT_RBRC>;
+        };
+
+        td_brc_us: tap_dance_braces_us {
+           compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_BRACES_US";
+            #binding-cells = <0>;
+            tapping-term-ms = <180>;
+            //bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
+            bindings = <&kp LBRC>, <&kp RBRC>;
         };
 
         td_ang: tap_dance_angulars_simplifed {
@@ -332,12 +375,29 @@
            bindings = <&kp IT_LESS>, <&kp IT_GREAT>;
         };
 
+        td_ang_us: tap_dance_angulars_simplifed_us {
+           compatible = "zmk,behavior-tap-dance";
+           label = "TAP_DANCE_ANGULARS_SIMPLIFIED_US";
+           #binding-cells = <0>;
+           tapping-term-ms = <200>;
+           //bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
+           bindings = <&kp LESS_THAN>, <&kp GREATER_THAN>;
+        };
+
         td_currencies: tap_dance_currencies {
            compatible = "zmk,behavior-tap-dance";
            label = "TAP_DANCE_CURRENCIES";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
            bindings = <&kp IT_USD>, <&kp IT_EUR>, <&kp IT_PND>, <&kp IT_YEN>;
+        };
+
+        td_currencies_us: tap_dance_currencies_us {
+           compatible = "zmk,behavior-tap-dance";
+           label = "TAP_DANCE_CURRENCIES_US";
+           #binding-cells = <0>;
+           tapping-term-ms = <200>;
+           bindings = <&kp DOLLAR>, <&kp IT_EUR>, <&kp IT_PND>, <&kp IT_YEN>;
         };
 
     };
@@ -352,8 +412,8 @@
        		default_layer {
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
-		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
-		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA        &rm LCTRL DOT        &rm LSHIFT IT_SQUOT
+		&lm LSHIFT A        &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHIFT O
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
                                                 &qlt SYMBOLS RET    &mo EXTRA           &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
 		};
@@ -446,12 +506,64 @@
            	extra_layer {
     	bindings = <
     	NONE_ROW NONE_ROW
-    	&none &none &kp LSHIFT &kp LCTRL &none NONE_ROW
+    	&none &none &kp LSHIFT &kp LCTRL &to DEFAULT_US NONE_ROW
     	NONE_ROW NONE_ROW
         &none             &none         &none           &none               &none               &none
     	>;
     	};
 
+/*********************************************
+*   DEFAULT US LAYOUT
+*********************************************/
+
+            default_us_layer {
+		bindings = <
+		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
+		&lm LSHIFT A        &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHIFT O
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT SINGLE_QUOTE
+                                                &qlt SYMBOLS_US RET &mo EXTRA_US        &none           &none               &mo KEYBOARD        &lt UTILITY_US SPC
+		>;
+		};
+
+/*********************************************
+*   SYMBOLS US LAYOUT
+*********************************************/
+
+           symbols_us_layer {
+		bindings = <
+		&kp EXCL            &kp DOUBLE_QUOTES   &kp BACKSLASH       &kp CARET           &none           &none               &kp AT              &kp HASH            &kp QUESTION        &kp LC(BKSP)
+		&td_ang_us          &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies_us   &kp EQUAL           &kp SLASH           &kp MINUS           &kp UNDER
+		&kp LS(N5)          &td_brc_us          &td_bkt_us          &td_par_us          &kp TILDE       &kp IT_BKTK         &kp AMPS            &kp PIPE            &kp ASTERISK        &kp PLUS
+                                                &none               &trans              &trans          &trans              &trans              &trans
+		>;
+		};
+
+
+/*********************************************
+*   UTILITY US LAYER
+*********************************************/
+
+		    utility_us_layer {
+		bindings = <
+		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &kp END             &kp END             &kp DEL
+		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
+		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LGUI            &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
+                                                &trans              &trans              &trans          &trans              &trans              &none
+		>;
+		};
+
+/*********************************************
+*   EXTRA US
+*********************************************/
+
+           	extra_us_layer {
+    	bindings = <
+    	NONE_ROW NONE_ROW
+    	&none &none &kp LSHIFT &kp LCTRL &to DEFAULT NONE_ROW
+    	NONE_ROW NONE_ROW
+        &none             &none         &none           &none               &none               &none
+    	>;
+    	};
     };
 
 };
