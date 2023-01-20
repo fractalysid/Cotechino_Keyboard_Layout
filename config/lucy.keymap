@@ -404,6 +404,10 @@
 
     };
 
+
+/********************************************************
+*   KEYMAP
+*********************************************************/
         keymap {
                 compatible = "zmk,keymap";
 
@@ -429,7 +433,7 @@
 		bindings = <
 		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &kp END             &kp END             &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
-		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LGUI            &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
+		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LC(LS(TAB))     &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
                                                 &trans              &trans              &trans          &trans              &trans              &none
 		>;
 		};
