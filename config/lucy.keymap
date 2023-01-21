@@ -257,7 +257,7 @@
             #binding-cells = <2>;
             //flavor = "tap-unless-interrupted";
             flavor = "tap-preferred";
-            tapping-term-ms = <175>;
+            tapping-term-ms = <170>;
             quick-tap-ms = <80>;        // 125
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;    // <---[[right-hand keys]]
@@ -269,7 +269,7 @@
             #binding-cells = <2>;
             //flavor = "tap-unless-interrupted";
             flavor = "tap-preferred";
-            tapping-term-ms = <175>;
+            tapping-term-ms = <170>;
             quick-tap-ms = <80>;        // 125
             bindings = <&kp>, <&kp>;
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;    // <---[[left-hand keys]]
@@ -446,8 +446,8 @@
 // &kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE
            symbols_layer {
 		bindings = <
-		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_BSLH         &kp IT_CARET        &none           &none               &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
-		&td_ang             &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
+		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
+		&td_ang             &kp IT_IGRV         &kp IT_OGRV         &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
 		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &kp IT_TILDE    &kp IT_BKTK         &kp IT_AND          &kp IT_PIPE         &kp IT_AST          &kp IT_PLUS
                                                 &none               &trans              &trans          &trans              &trans              &trans
 		>;
