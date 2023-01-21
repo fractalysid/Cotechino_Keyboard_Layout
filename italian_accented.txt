@@ -1,0 +1,14 @@
+https://www.sttmedia.com/characterfrequency-italian
+
+è 0.42
+à 0.15
+ù 0.12
+ò 0.11
+ì 0.09
+é 0.06
+
+Questa è l'unica fonte che ho trovato che riporta le frequenze delle lettere accentate seppur su solo 344 mila parole e
+non specifica su che tipo di testi ma dicendo che è un misto di molti generi letterari.
+Quindi prendo questo come riferimento.
+
+Tuttavia per ora provo a non cambiare, così da non dover addestrare nuovamente il cervello.

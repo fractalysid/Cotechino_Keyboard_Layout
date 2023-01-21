@@ -28,7 +28,7 @@
 #define EXTRA                   7
 
 // ------------------------------
-// I need a copy for every layer because I cannot activate lower number layers
+// I need a copy for every layer because I cannot activate lower number layers (can I?)
 
 #define DEFAULT_US              8
 
@@ -67,9 +67,8 @@
                    ;
            };
 
-            // I don't know why but this doesn't work
-           linux_reboot: linux_reboot {
-                label = "reboot_linux_system_with_SysRq";
+           magic_sync: magic_sysrq_sync {
+                label = "sync_disks_with_MagicSysRq";
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 wait-ms = <500>;
@@ -77,10 +76,29 @@
                 bindings
                      = <&macro_press &kp LALT>
                      , <&macro_press &kp PRINTSCREEN>
-                     , <&kp R &kp E>
+                     , <&macro_tap &kp S>
+                     , <&macro_release &kp LALT>
+                     , <&macro_release &kp PRINTSCREEN>
+                     ;
+            };
+
+           linux_reboot: linux_reboot {
+                label = "reboot_linux_system_with_SysRq";
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                wait-ms = <100>;
+                tap-ms = <40>;
+                bindings
+                     = <&macro_press &kp LALT>
+                     , <&macro_press &kp PRINTSCREEN>
+                     , <&kp R>
+                     , <&kp E>
+                     , <&macro_wait_time 1000>
                      , <&kp I>
                      , <&kp S>
+                     , <&macro_wait_time 500>
                      , <&kp U>
+                     , <&macro_pause_for_release>
                      , <&kp B>
                      , <&macro_release &kp LALT>
                      , <&macro_release &kp PRINTSCREEN>
@@ -460,8 +478,8 @@
 		    numbers_functions_layer {
 		bindings = <
 		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
-        &kp N0              &kp N1              &kp N2              &kp N3             &trans          &none               &kp F4              &kp F5              &kp F6              &kp F11
-        &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &trans              &kp F1              &kp F2              &kp F3              &kp F12
+        &kp N0              &kp N1              &kp N2              &kp N3             &trans          &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
+        &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
                                                 &trans              &trans             &trans          &trans              &trans              &trans
 		>;
 		};
