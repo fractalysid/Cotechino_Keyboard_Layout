@@ -36,8 +36,9 @@
 
 #define UTILITY_US              10
 
-#define EXTRA_US                11
+#define NUM_FUNC_US             11
 
+#define EXTRA_US                12
 
 // Global mod-tap configuration
 &mt {
@@ -202,8 +203,8 @@
             then-layer = <NUM_FUNC>;
         };
         tri_keyboard_us_layer {
-            if-layers = <UTILITY SYMBOLS_US>;
-            then-layer = <NUM_FUNC>;
+            if-layers = <UTILITY_US SYMBOLS_US>;
+            then-layer = <NUM_FUNC_US>;
         };
 
     };
@@ -562,7 +563,6 @@
 		>;
 		};
 
-
 /*********************************************
 *   UTILITY US LAYER
 *********************************************/
@@ -573,6 +573,19 @@
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
 		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LGUI            &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
                                                 &trans              &trans              &trans          &trans              &trans              &none
+		>;
+		};
+
+/*********************************************
+*   NUMBERS/SYMBOLS
+*********************************************/
+
+		    numbers_functions_us_layer {
+		bindings = <
+		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
+        &kp N0              &kp N1              &kp N2              &kp N3             &trans          &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
+        &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
+                                                &trans              &trans             &trans          &trans              &trans              &trans
 		>;
 		};
 
