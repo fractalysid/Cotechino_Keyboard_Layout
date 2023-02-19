@@ -515,10 +515,10 @@
 
            	gaming_layer {
     	bindings = <
-    	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp UP              &kp U               &kp I
-    	&kp LSHIFT          &kp A               &kp S               &kp D               &kp F           &kp G               &kp LEFT            &kp DOWN            &kp RIGHT           &kp P
-    	&kp LCTRL           &kp Z               &kp X               &kp C               &kp V           &kp B               &kp M               &kp N               &kp L               &kp J
-                                                &kp SPC             &to DEFAULT         &none           &none               &none               &kp RET
+    	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp U               &kp I               &kp O
+    	&kp LSHIFT          &kp A               &kp S               &kp D               &kp F           &kp G               &kp J               &kp K               &kp L               &kp P
+    	&kp LCTRL           &kp Z               &kp X               &kp C               &kp V           &kp B               &kp M               &kp N               &none               &none
+                                                &kp SPC             &kp ESC             &none           &none               &to DEFAULT         &kp RET
     	>;
     	};
 
@@ -536,6 +536,10 @@
         &none             &none         &none           &none               &none               &none
     	>;
     	};
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 /*********************************************
 *   DEFAULT US LAYOUT
