@@ -33,10 +33,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_WHEEL_TIME_TO_MAX 100
 
 // Pick good defaults for enabling homerow modifiers
-#define TAPPING_TERM 175
+#define TAPPING_TERM 160
 #define PERMISSIVE_HOLD
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_FORCE_HOLD
+
+// Enables per-key tapping term
+#define TAPPING_TERM_PER_KEY
 
 // Underglow configuration
 #ifdef RGBLIGHT_ENABLE
