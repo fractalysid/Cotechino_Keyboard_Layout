@@ -1,1 +1,4 @@
 *.drawio.*
+.directory
+compile.sh
+italian_accented.txt
