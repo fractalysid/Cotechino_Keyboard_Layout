@@ -490,7 +490,7 @@
 		    keyboard_layer {
 		bindings = <
 		&reset              &bootloader         &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &none           &none               &kp C_BRI_INC       &kp C_BRI_DEC       &bootloader         &reset
-		&kp K_STOP2         &kp K_PREV          &kp K_NEXT          &kp K_PLAY_PAUSE    &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
+		&kp K_STOP2         &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
 		&bt BT_CLR          &none               &none               &none               &none           &none               &to QWERTY          &to GAMING          &none               &bt BT_SEL 4
                                                 &trans              &trans              &trans          &trans              &trans              &trans
 		>;
