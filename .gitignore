@@ -1,4 +1,5 @@
 *.drawio.*
+*.drawio_*.*
 .directory
 compile.sh
 italian_accented.txt
