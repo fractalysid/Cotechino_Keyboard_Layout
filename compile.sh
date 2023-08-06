@@ -28,3 +28,6 @@ west build -p -d build/$LEFT_BUILD_DIR -b nice_nano_v2 -- -DSHIELD=$L_SHIELD -DZ
 && west build -p -d build/$RIGHT_BUILD_DIR -b nice_nano_v2 -- -DSHIELD=$R_SHIELD -DZMK_CONFIG=$CONFIG \
 && mv build/$RIGHT_BUILD_DIR/zephyr/zmk.uf2 "$OUTPUT/right.uf2"
 
+# For QMK
+#cd /home/mattia/Documenti/Keyboards/firmwares/qmk_firmware
+#qmk flash -kb ferris/sweep -km cotechino
