@@ -2,6 +2,8 @@
 
 # Absolute path of your local zmk repo
 ZMK_DIR="/home/mattia/Documenti/Keyboards/firmwares/zmk/"
+#"/media/mattia/data/System/Firmwares/Keyboards/zmk/"
+#"/home/mattia/Documenti/Keyboards/firmwares/zmk/"
 
 # Shield name
 L_SHIELD="lucy_v02_left"
@@ -15,9 +17,11 @@ RIGHT_BUILD_DIR="${R_SHIELD}"
 
 # Firwmare output absolute path (no trailing /)
 OUTPUT="/home/mattia/Documenti/Keyboards/firmwares/Lucy v0.2/Cotechino"
+#"/media/mattia/data/System/Firmwares/Keyboards/Lucy v0.2/Cotechino"
+#"/home/mattia/Documenti/Keyboards/firmwares/Lucy v0.2/Cotechino"
 
 
-cd $ZMK_DIR
+cd "$ZMK_DIR"
 
 source zephyr/zephyr-env.sh
 

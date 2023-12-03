@@ -531,7 +531,7 @@
            	extra_layer {
     	bindings = <
     	NONE_ROW                                                                                        &to QWERTY         &none               &none               &none               &none
-    	&none &none &kp LSHIFT &kp LCTRL &none                                                          &to DEFAULT_US     &none               &none               &none               &none
+    	&kp K_STOP2         &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &none           &to DEFAULT_US     &none               &none               &none               &none
     	&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &to GAMING         &none               &none               &none               &none
         &none             &none         &none           &none               &none               &none
     	>;
