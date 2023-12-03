@@ -478,9 +478,9 @@
 
 		    numbers_functions_layer {
 		bindings = <
-		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
-        &kp N0              &kp N1              &kp N2              &kp N3             &trans          &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
-        &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
+		&kp DOT             &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
+        &kp KP_N0           &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_MINUS         &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
+        &kp KP_ASTERISK     &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_SLASH         &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
                                                 &trans              &trans             &trans          &trans              &trans              &trans
 		>;
 		};
