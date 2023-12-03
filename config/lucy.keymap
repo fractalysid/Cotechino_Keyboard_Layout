@@ -491,7 +491,7 @@
 		bindings = <
 		&reset              &bootloader         &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &none           &none               &kp C_BRI_INC       &kp C_BRI_DEC       &bootloader         &reset
 		&kp K_STOP2         &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
-		&bt BT_CLR          &none               &none               &none               &none           &none               &to QWERTY          &to GAMING          &none               &bt BT_SEL 4
+		&bt BT_CLR          &none               &none               &none               &none           &none               &none               &none               &none               &bt BT_SEL 4
                                                 &trans              &trans              &trans          &trans              &trans              &trans
 		>;
 		};
@@ -530,9 +530,9 @@
 
            	extra_layer {
     	bindings = <
-    	NONE_ROW NONE_ROW
-    	&none &none &kp LSHIFT &kp LCTRL &to DEFAULT_US NONE_ROW
-    	NONE_ROW NONE_ROW
+    	NONE_ROW                                                                                        &to QWERTY         &none               &none               &none               &none
+    	&none &none &kp LSHIFT &kp LCTRL &none                                                          &to DEFAULT_US     &none               &none               &none               &none
+    	&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &to GAMING         &none               &none               &none               &none
         &none             &none         &none           &none               &none               &none
     	>;
     	};
@@ -550,7 +550,7 @@
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&lm LSHIFT A        &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHIFT O
 		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT SINGLE_QUOTE
-                                                &qlt SYMBOLS_US RET &mo EXTRA_US        &none           &none               &mo KEYBOARD        &lt UTILITY_US SPC
+                                                &qlt SYMBOLS_US RET &to DEFAULT         &none           &none               &mo KEYBOARD        &lt UTILITY_US SPC
 		>;
 		};
 
