@@ -21,24 +21,27 @@
 
 #define KEYBOARD                4
 
-#define QWERTY                  5
+#define MEDIA_NUMPAD            5
 
-#define GAMING                  6
+#define EXTRA                   6
 
-#define EXTRA                   7
+#define QWERTY                  7
 
+#define GAMING                  8
 // ------------------------------
 // I need a copy for every layer because I cannot activate lower number layers (can I?)
 
-#define DEFAULT_US              8
+#define DEFAULT_US              9
 
-#define SYMBOLS_US              9
+#define SYMBOLS_US              10
 
-#define UTILITY_US              10
+#define UTILITY_US              11
 
-#define NUM_FUNC_US             11
+#define NUM_FUNC_US             12
 
-#define EXTRA_US                12
+#define EXTRA_US                13
+
+#define NONE_ROW &none &none &none &none &none
 
 // Global mod-tap configuration
 &mt {
@@ -198,11 +201,17 @@
 
     conditional_layers {
         compatible = "zmk,conditional-layers";
-        tri_keyboard_layer {
+        numfn_layer {
             if-layers = <UTILITY SYMBOLS>;
             then-layer = <NUM_FUNC>;
         };
-        tri_keyboard_us_layer {
+
+        extra2_layer {
+            if-layers = <EXTRA KEYBOARD>;
+            then-layer = <EXTRA>;
+        };
+
+        numfn_us_layer {
             if-layers = <UTILITY_US SYMBOLS_US>;
             then-layer = <NUM_FUNC_US>;
         };
@@ -425,13 +434,13 @@
 
 
 /********************************************************
-*   KEYMAP
+*                       KEYMAP                          *
 *********************************************************/
         keymap {
                 compatible = "zmk,keymap";
 
 /*********************************************
-*   DEFAULT layer with COLEMAK-DH
+*       DEFAULT layer with COLEMAK-DH        *
 **********************************************/
 
        		default_layer {
@@ -439,14 +448,13 @@
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
 		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
-                                                &qlt SYMBOLS RET    &mo EXTRA           &none           &none               &mo KEYBOARD        &lt UTILITY SPC
+                                                &qlt SYMBOLS RET    &mo MEDIA_NUMPAD    &none           &none               &mo KEYBOARD        &lt UTILITY SPC
 		>;
 		};
 
 /*********************************************
-*   UTILITY LAYER
+*               UTILITY LAYER                *
 *********************************************/
-// &kp K_COPY &kp K_PASTE &kp K_CUT don't work
 
 		    utility_layer {
 		bindings = <
@@ -458,11 +466,9 @@
 		};
 
 /*********************************************
-*   SYMBOLS
+*                   SYMBOLS                  *
 *********************************************/
 
-// &td_ang             &td_brc             &td_bkt             &td_par
-// &kp IT_PERC         &kp IT_EUR          &kp IT_PND          &kp IT_TILDE
            symbols_layer {
 		bindings = <
 		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
@@ -473,31 +479,65 @@
 		};
 
 /*********************************************
-*   NUMBERS/SYMBOLS
+*              NUMBERS/SYMBOLS               *
 *********************************************/
 
 		    numbers_functions_layer {
 		bindings = <
 		&kp DOT             &kp N7              &kp N8              &kp N9              &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
-        &kp N0              &kp N1              &kp N2              &kp N3              &kp KP_MINUS         &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
-        &kp KP_ASTERISK     &kp N4              &kp N5              &kp N6              &kp KP_SLASH         &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
+        &kp N0              &kp N1              &kp N2              &kp N3              &kp KP_MINUS         &kp F13             &kp F4              &kp F5              &kp F6              &kp F11
+        &kp KP_ASTERISK     &kp N4              &kp N5              &kp N6              &kp KP_SLASH         &kp F14             &kp F1              &kp F2              &kp F3              &kp F12
                                                 &trans              &trans              &trans               &trans              &trans              &trans
 		>;
 		};
 
-// KEYBOARD LAYER
+/******************************************
+ *              KEYBOARD                  *
+ *****************************************/
 // reset and bootloader must be present on both sides as they only work on the side where they are pressed
 		    keyboard_layer {
 		bindings = <
-		&reset              &bootloader         &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &none           &none               &kp C_BRI_INC       &kp C_BRI_DEC       &bootloader         &reset
-		&kp K_STOP2         &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
-		&bt BT_CLR          &none               &none               &none               &none           &none               &none               &none               &bt BT_SEL 5        &bt BT_SEL 4
+		&reset              &bootloader         &none               &none               &none           &none               &none               &kp KP_NUMLOCK      &bootloader         &reset
+		&none               &none               &none               &none               &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
+		&none               &none               &none               &none               &bt BT_CLR      &bt BT_CLR          &none               &none               &bt BT_SEL 5        &bt BT_SEL 4
                                                 &trans              &trans              &trans          &trans              &trans              &trans
 		>;
 		};
 
 /*********************************************
-*   QWERTY
+*               MEDIA & NUMPAD               *
+*********************************************/
+
+// TODO: missing K_STOP2
+            media_numpad_layer {
+        bindings = <
+        &kp C_BRI_INC       &kp C_BRI_DEC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BKSP
+        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &kp C_FF        &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
+        &kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
+                                                &none               &none               &none           &none                 &none               &none
+        >;
+        };
+
+/*********************************************
+*                   EXTRA                    *
+*********************************************/
+
+/********
+ * TODO: use this layer for macros
+ * - insert email
+ * -
+ *******/
+            extra_layer {
+        bindings = <
+        &none               &none               &none               &none               &magic_sync     &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BKSP
+        &none               &to GAMING          &to QWERTY          &to DEFAULT_US      &linux_reboot   &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
+        &none               &none               &none               &none               &none           &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
+                                                &none               &none               &none           &none                 &none               &none
+        >;
+        };
+
+/*********************************************
+*                   QWERTY                   *
 *********************************************/
 
        		qwerty_layer {
@@ -522,24 +562,9 @@
     	>;
     	};
 
-/*********************************************
-*   EXTRA
-*********************************************/
-
-        #define NONE_ROW &none &none &none &none &none
-
-           	extra_layer {
-    	bindings = <
-    	NONE_ROW                                                                                        &to QWERTY         &none               &none               &none               &none
-    	&kp K_STOP2         &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &none           &to DEFAULT_US     &none               &none               &none               &none
-    	&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &to GAMING         &none               &none               &none               &none
-        &none             &none         &none           &none               &none               &none
-    	>;
-    	};
-
-
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*********************************************
 *   DEFAULT US LAYOUT
