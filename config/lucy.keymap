@@ -2,16 +2,19 @@
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
+ *
+ * Layout by Sabbio
  */
 
+#include "./emails.h"
+#include "./pwds.h"
 #include "./boards/shields/lucy/italian.keycodes"
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/bt.h>
-#include "./emails.h"
-#include "./pwds.h"
+#include <dt-bindings/zmk/mouse.h>
 
 /***************************
 *        LAYER CODES       *
@@ -34,20 +37,23 @@
 #define QWERTY                  7
 
 #define GAMING                  8
+
+#define MOUSE                   9
 // ------------------------------
 // I need a copy for every layer because I cannot activate lower number layers (can I?)
 
-#define DEFAULT_US              9
+#define DEFAULT_US              10
 
-#define SYMBOLS_US              10
+#define SYMBOLS_US              11
 
-#define UTILITY_US              11
+#define UTILITY_US              12
 
-#define NUM_FUNC_US             12
+#define NUM_FUNC_US             13
 
-#define EXTRA_US                13
+#define EXTRA_US                14
 
 #define NONE_ROW &none &none &none &none &none
+#define NONE_LINE NONE_ROW NONE_ROW
 
 // Global mod-tap configuration
 &mt {
@@ -537,7 +543,7 @@
             media_numpad_layer {
         bindings = <
         &kp C_BRI_INC       &kp C_BRI_DEC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BKSP
-        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &kp C_FF        &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
+        &none               &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &mo MOUSE       &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
         &kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
                                                 &trans              &none               &none           &none                 &trans              &trans
         >;
@@ -575,7 +581,7 @@
 		};
 
 /*********************************************
-*   GAMING
+*                   GAMING                  *
 *********************************************/
 
            	gaming_layer {
@@ -587,12 +593,25 @@
     	>;
     	};
 
+/*********************************************
+*                   MOUSE                    *
+*********************************************/
+
+           	gaming_layer {
+    	bindings = <
+    	&NONE_ROW
+    	&NONE_ROW                                                                                       &kp T               &kp Y               &kp U               &kp I           &kp O
+    	&NONE_ROW                                                                                       &kp A               &kp S               &kp D               &kp F           &kp G
+    	&NONE_ROW                                                                                       &kp Z               &kp X               &kp C               &kp V           &kp B
+                                                &none               &none               &none           &none               &none               &none
+    	>;
+    	};
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*********************************************
-*   DEFAULT US LAYOUT
+*             DEFAULT US LAYOUT              *
 *********************************************/
 
             default_us_layer {
@@ -605,7 +624,7 @@
 		};
 
 /*********************************************
-*   SYMBOLS US LAYOUT
+*             SYMBOLS US LAYOUT              *
 *********************************************/
 
            symbols_us_layer {
@@ -618,7 +637,7 @@
 		};
 
 /*********************************************
-*   UTILITY US LAYER
+*             UTILITY US LAYER               *
 *********************************************/
 
 		    utility_us_layer {
@@ -631,7 +650,7 @@
 		};
 
 /*********************************************
-*   NUMBERS/SYMBOLS
+*              NUMBERS/SYMBOLS               *
 *********************************************/
 
 		    numbers_functions_us_layer {
@@ -644,7 +663,7 @@
 		};
 
 /*********************************************
-*   EXTRA US
+*                  EXTRA US                  *
 *********************************************/
 
            	extra_us_layer {
