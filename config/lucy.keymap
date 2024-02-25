@@ -10,6 +10,12 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/bt.h>
+#include "./emails.h"
+#include "./pwds.h"
+
+/***************************
+*        LAYER CODES       *
+****************************/
 
 #define DEFAULT                 0
 
@@ -58,18 +64,33 @@
 *********************************************************/
 
     macros {
-           gmail: gmail {
+
+    /**********************************
+    *      MACROS typing emails       *
+    ***********************************/
+
+           mb_gmail: mb_gmail {
                label = "gmail_email";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
-               wait-ms = <30>;
-               tap-ms = <40>;
+               wait-ms = <20>;
+               tap-ms = <10>;
                bindings
                    = <
-                   &kp S &kp A &kp B &kp B &kp I &kp O
+                   MB92_GMAIL
                    >
                    ;
            };
+
+    /**********************************
+    *     MACROS typing passwords     *
+    ***********************************/
+
+
+
+    /**********************************
+    *       Other generic macros      *
+    ***********************************/
 
            magic_sync: magic_sysrq_sync {
                 label = "sync_disks_with_MagicSysRq";
@@ -207,7 +228,7 @@
         };
 
         extra2_layer {
-            if-layers = <EXTRA KEYBOARD>;
+            if-layers = <MEDIA_NUMPAD KEYBOARD>;
             then-layer = <EXTRA>;
         };
 
@@ -461,7 +482,7 @@
 		&kp ESC             &kp PRINTSCREEN     &caps_word          &kp CAPS            &kp INSERT      &kp PAGE_UP         &kp HOME            &kp END             &kp END             &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
 		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LC(LS(TAB))     &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
-                                                &trans              &trans              &trans          &trans              &trans              &none
+                                                &trans              &trans              &none           &none               &none
 		>;
 		};
 
@@ -474,12 +495,12 @@
 		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
 		&td_ang             &kp IT_IGRV         &kp IT_OGRV         &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
 		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &kp IT_TILDE    &kp IT_BKTK         &kp IT_AND          &kp IT_PIPE         &kp IT_AST          &kp IT_PLUS
-                                                &none               &trans              &trans          &trans              &trans              &trans
+                                                &none               &trans              &none           &none               &trans              &trans
 		>;
 		};
 
 /*********************************************
-*              NUMBERS/SYMBOLS               *
+*              NUMBERS/FUNCTIONS             *
 *********************************************/
 
 		    numbers_functions_layer {
@@ -487,7 +508,7 @@
 		&kp DOT             &kp N7              &kp N8              &kp N9              &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
         &kp N0              &kp N1              &kp N2              &kp N3              &kp KP_MINUS         &kp F13             &kp F4              &kp F5              &kp F6              &kp F11
         &kp KP_ASTERISK     &kp N4              &kp N5              &kp N6              &kp KP_SLASH         &kp F14             &kp F1              &kp F2              &kp F3              &kp F12
-                                                &trans              &trans              &trans               &trans              &trans              &trans
+                                                &none               &trans              &none                &none               &trans              &none
 		>;
 		};
 
@@ -500,7 +521,7 @@
 		&reset              &bootloader         &none               &none               &none           &none               &none               &kp KP_NUMLOCK      &bootloader         &reset
 		&none               &none               &none               &none               &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
 		&none               &none               &none               &none               &bt BT_CLR      &bt BT_CLR          &none               &none               &bt BT_SEL 5        &bt BT_SEL 4
-                                                &trans              &trans              &trans          &trans              &trans              &trans
+                                                &trans              &trans              &none           &none               &none               &trans
 		>;
 		};
 
@@ -509,12 +530,16 @@
 *********************************************/
 
 // TODO: missing K_STOP2
+/**
+ * NOTES:
+ * - C_REWIND and C_FAST_FORWARD don't work
+ */
             media_numpad_layer {
         bindings = <
         &kp C_BRI_INC       &kp C_BRI_DEC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BKSP
         &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &kp C_FF        &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
         &kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
-                                                &none               &none               &none           &none                 &none               &none
+                                                &trans              &none               &none           &none                 &trans              &trans
         >;
         };
 
@@ -530,9 +555,9 @@
             extra_layer {
         bindings = <
         &none               &none               &none               &none               &magic_sync     &none                 &none               &none               &none               &none
-        &none               &to GAMING          &to QWERTY          &to DEFAULT_US      &linux_reboot   &none                 &none               &none               &none               &none
+        &mb_gmail           &to GAMING          &to QWERTY          &to DEFAULT_US      &linux_reboot   &none                 &none               &none               &none               &none
         &none               &none               &none               &none               &none           &none                 &none               &none               &none               &none
-                                                &none               &none               &none           &none                 &none               &none
+                                                &trans              &none               &none           &none                 &none               &trans
         >;
         };
 
