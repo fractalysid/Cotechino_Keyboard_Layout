@@ -70,7 +70,6 @@
     ***********************************/
 
            mb_gmail: mb_gmail {
-               label = "gmail_email";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
                wait-ms = <20>;
@@ -93,7 +92,6 @@
     ***********************************/
 
            magic_sync: magic_sysrq_sync {
-                label = "sync_disks_with_MagicSysRq";
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 wait-ms = <500>;
@@ -108,7 +106,6 @@
             };
 
            linux_reboot: linux_reboot {
-                label = "reboot_linux_system_with_SysRq";
                 compatible = "zmk,behavior-macro";
                 #binding-cells = <0>;
                 wait-ms = <100>;
@@ -131,7 +128,6 @@
            };
 
            macro_par: macro_parentheses {
-               label = "macro_parentheses";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
                wait-ms = <30>;
@@ -144,7 +140,6 @@
            };
 
            macro_bkt: macro_brackets {
-               label = "macro_brackets";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
                wait-ms = <30>;
@@ -157,7 +152,6 @@
            };
 
            macro_brc: macro_braces {
-               label = "macro_braces";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
                wait-ms = <30>;
@@ -170,7 +164,6 @@
            };
 
            macro_ang: macro_angulars {
-               label = "macro_angulars";
                compatible = "zmk,behavior-macro";
                #binding-cells = <0>;
                wait-ms = <30>;
@@ -252,7 +245,6 @@
 
         as: auto_shift {
                     compatible = "zmk,behavior-hold-tap";
-                    label = "AUTO_SHIFT";
                     #binding-cells = <2>;
                     tapping_term_ms = <180>;
                     quick_tap_ms = <125>;
@@ -266,7 +258,6 @@
         // Delete with backspace + shift
         bspc_del: backspace_delete {
                     compatible = "zmk,behavior-mod-morph";
-                    label = "BACKSPACE_DELETE";
                     #binding-cells = <0>;
                     bindings = <&kp BACKSPACE>, <&kp DELETE>;
                     mods = <(MOD_LSFT|MOD_RSFT)>;
@@ -277,7 +268,6 @@
 
         llt: left_layer_toggle {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_LAYERS_LEFT";
             #binding-cells = <2>;
             tapping-term-ms = <200>;    // 250
             quick_tap_ms = <80>;
@@ -288,7 +278,6 @@
 
         rlt: right_layer_toggle {
             compatible = "zmk,behavior-hold-tap";
-            label = "HOMEROW_LAYERS_RIGHT";
             #binding-cells = <2>;
             tapping-term-ms = <200>;    //250
             quick_tap_ms = <80>;
@@ -302,7 +291,6 @@
 
         lm: left_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "MODS_LEFT";
             #binding-cells = <2>;
             //flavor = "tap-unless-interrupted";
             flavor = "tap-preferred";
@@ -314,7 +302,6 @@
 
         rm: right_mods {
             compatible = "zmk,behavior-hold-tap";
-            label = "MODS_RIGHT";
             #binding-cells = <2>;
             //flavor = "tap-unless-interrupted";
             flavor = "tap-preferred";
@@ -328,7 +315,6 @@
     // the hold behavior. This is possible as RETURN is not used in the middle of something. Balanced behavior is perfect here
         qlt: quick_layer_toggle {
             compatible = "zmk,behavior-hold-tap";
-            label = "LEFT_LAYER_TOGGLE";
             #binding-cells = <2>;
             tapping-term-ms = <125>;
             quick-tap-ms = <0>;
@@ -340,7 +326,6 @@
 
         td_e: tap_dance_e {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_E";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             //bindings = <&kp E>, <&kp IT_EGRV>, <&kp IT_EACU>;
@@ -349,7 +334,6 @@
 
         td_oa: tap_dance_o_a {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_O_A";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp IT_OGRV>, <&kp IT_AGRV>;
@@ -357,7 +341,6 @@
 
         td_iu: tap_dance_i_u {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_I_U";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp IT_IGRV>, <&kp IT_UGRV>;
@@ -365,7 +348,6 @@
 
         td_par: tap_dance_parentheses {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_PARENTHESES";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
@@ -374,7 +356,6 @@
 
         td_par_us: tap_dance_parentheses_us {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_PARENTHESES_US";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LPAR>, <&macro_par>, <&kp IT_RPAR>;
@@ -383,7 +364,6 @@
 
         td_bkt: tap_dance_brackets {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_BRACKETS";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
@@ -392,7 +372,6 @@
 
         td_bkt_us: tap_dance_brackets_us {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_BRACKETS_US";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LBKT>, <&macro_bkt>, <&kp IT_RBKT>;
@@ -401,7 +380,6 @@
 
         td_brc: tap_dance_braces {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_BRACES";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
@@ -410,7 +388,6 @@
 
         td_brc_us: tap_dance_braces_us {
            compatible = "zmk,behavior-tap-dance";
-            label = "TAP_DANCE_BRACES_US";
             #binding-cells = <0>;
             tapping-term-ms = <180>;
             //bindings = <&kp IT_LBRC>, <&macro_brc>, <&kp IT_RBRC>;
@@ -419,7 +396,6 @@
 
         td_ang: tap_dance_angulars_simplifed {
            compatible = "zmk,behavior-tap-dance";
-           label = "TAP_DANCE_ANGULARS_SIMPLIFIED";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
            //bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
@@ -428,7 +404,6 @@
 
         td_ang_us: tap_dance_angulars_simplifed_us {
            compatible = "zmk,behavior-tap-dance";
-           label = "TAP_DANCE_ANGULARS_SIMPLIFIED_US";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
            //bindings = <&kp IT_LESS>, <&macro_ang>, <&kp IT_GREAT>;
@@ -437,7 +412,6 @@
 
         td_currencies: tap_dance_currencies {
            compatible = "zmk,behavior-tap-dance";
-           label = "TAP_DANCE_CURRENCIES";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
            bindings = <&kp IT_USD>, <&kp IT_EUR>, <&kp IT_PND>, <&kp IT_YEN>;
@@ -445,7 +419,6 @@
 
         td_currencies_us: tap_dance_currencies_us {
            compatible = "zmk,behavior-tap-dance";
-           label = "TAP_DANCE_CURRENCIES_US";
            #binding-cells = <0>;
            tapping-term-ms = <200>;
            bindings = <&kp DOLLAR>, <&kp IT_EUR>, <&kp IT_PND>, <&kp IT_YEN>;
@@ -468,8 +441,8 @@
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
-		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
-                                                &qlt SYMBOLS RET    &mo MEDIA_NUMPAD    &none           &none               &mo KEYBOARD        &lt UTILITY SPC
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT COMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
+                                                &qlt SYMBOLS RET    &mo MEDIA_NUMPAD    &none           &none               &mo KEYBOARD        &lt UTILITY SPACE
 		>;
 		};
 
@@ -492,7 +465,7 @@
 
            symbols_layer {
 		bindings = <
-		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BKSP)
+		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BSPC)
 		&td_ang             &kp IT_IGRV         &kp IT_OGRV         &td_e               &kp IT_DEGREE   &td_currencies      &kp IT_EQL          &kp IT_FSLH         &kp IT_MINUS        &kp IT_UNDER
 		&kp IT_PERC         &td_brc             &td_bkt             &td_par             &kp IT_TILDE    &kp IT_BKTK         &kp IT_AND          &kp IT_PIPE         &kp IT_AST          &kp IT_PLUS
                                                 &none               &trans              &none           &none               &trans              &trans
@@ -505,7 +478,7 @@
 
 		    numbers_functions_layer {
 		bindings = <
-		&kp DOT             &kp N7              &kp N8              &kp N9              &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
+		&kp DOT             &kp N7              &kp N8              &kp N9              &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BSPC
         &kp N0              &kp N1              &kp N2              &kp N3              &kp KP_MINUS         &kp F13             &kp F4              &kp F5              &kp F6              &kp F11
         &kp KP_ASTERISK     &kp N4              &kp N5              &kp N6              &kp KP_SLASH         &kp F14             &kp F1              &kp F2              &kp F3              &kp F12
                                                 &none               &trans              &none                &none               &trans              &none
@@ -518,7 +491,7 @@
 // reset and bootloader must be present on both sides as they only work on the side where they are pressed
 		    keyboard_layer {
 		bindings = <
-		&reset              &bootloader         &none               &none               &none           &none               &none               &kp KP_NUMLOCK      &bootloader         &reset
+		&sys_reset              &bootloader         &none               &none               &none           &none               &none               &kp KP_NUMLOCK      &bootloader         &sys_reset
 		&none               &none               &none               &none               &out OUT_USB    &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
 		&none               &none               &none               &none               &bt BT_CLR      &bt BT_CLR          &none               &none               &bt BT_SEL 5        &bt BT_SEL 4
                                                 &trans              &trans              &none           &none               &none               &trans
@@ -536,7 +509,7 @@
  */
             media_numpad_layer {
         bindings = <
-        &kp C_BRI_INC       &kp C_BRI_DEC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BKSP
+        &kp C_BRI_INC       &kp C_BRI_DEC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
         &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &kp C_FF        &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
         &kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
                                                 &trans              &none               &none           &none                 &trans              &trans
@@ -568,9 +541,9 @@
        		qwerty_layer {
 		bindings = <
 		&kp Q               &kp W               &kp E               &kp R               &kp T           &kp Y               &kp U               &kp I               &kp O               &kp P
-		&kp A               &kp S               &kp D               &kp F               &kp G           &kp H               &kp J               &kp K               &kp L               &kp BKSP
-		&kp Z               &kp X               &kp C               &kp V               &kp B           &kp M               &mt LGUI N          &mt LALT CMMA       &mt LCTRL DOT       &mt LSHFT IT_MINUS
-                                                &kp SPC             &to DEFAULT         &none           &none               &to DEFAULT         &kp RET
+		&kp A               &kp S               &kp D               &kp F               &kp G           &kp H               &kp J               &kp K               &kp L               &kp BSPC
+		&kp Z               &kp X               &kp C               &kp V               &kp B           &kp M               &mt LGUI N          &mt LALT COMMA       &mt LCTRL DOT       &mt LSHFT IT_MINUS
+                                                &kp SPACE             &to DEFAULT         &none           &none               &to DEFAULT         &kp RET
 		>;
 		};
 
@@ -578,7 +551,7 @@
 *   GAMING
 *********************************************/
 
-           	gaming_layer {
+/*           	gaming_layer {
     	bindings = <
     	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp U               &kp I               &kp O
     	&kp LSHIFT          &kp A               &kp S               &kp D               &kp F           &kp G               &kp J               &kp K               &kp L               &kp P
@@ -586,6 +559,16 @@
                                                 &kp SPC             &kp ESC             &none           &none               &to DEFAULT         &kp RET
     	>;
     	};
+*/
+            gaming_layer {
+        bindings = <
+        &kp Q               &kp W               &kp E               &kp R               &kp T           &kp T               &kp Y               &kp U               &kp I               &kp O
+        &kp LSHIFT          &kp Z               &kp X               &kp C               &kp B           &kp G               &kp J               &kp K               &kp L               &kp P
+        &kp LCTRL           &kp V               &kp G               &kp H               &kp N           &kp TAB             &kp M               &kp N               &none               &none
+                                                &kp SPACE             &kp ESC             &none           &none               &to DEFAULT         &kp RET
+        >;
+        };
+
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -599,8 +582,8 @@
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&lm LSHIFT A        &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &lm LSHIFT O
-		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT CMMA       &rm LCTRL DOT       &rm LSHIFT SINGLE_QUOTE
-                                                &qlt SYMBOLS_US RET &to DEFAULT         &none           &none               &mo KEYBOARD        &lt UTILITY_US SPC
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT COMMA       &rm LCTRL DOT       &rm LSHIFT SINGLE_QUOTE
+                                                &qlt SYMBOLS_US RET &to DEFAULT         &none           &none               &mo KEYBOARD        &lt UTILITY_US SPACE
 		>;
 		};
 
@@ -610,7 +593,7 @@
 
            symbols_us_layer {
 		bindings = <
-		&kp EXCL            &kp DOUBLE_QUOTES   &kp BACKSLASH       &kp CARET           &none           &none               &kp AT              &kp HASH            &kp QUESTION        &kp LC(BKSP)
+		&kp EXCL            &kp DOUBLE_QUOTES   &kp BACKSLASH       &kp CARET           &none           &none               &kp AT              &kp HASH            &kp QUESTION        &kp LC(BSPC)
 		&td_ang_us          &td_iu              &td_oa              &td_e               &kp IT_DEGREE   &td_currencies_us   &kp EQUAL           &kp SLASH           &kp MINUS           &kp UNDER
 		&kp LS(N5)          &td_brc_us          &td_bkt_us          &td_par_us          &kp TILDE       &kp IT_BKTK         &kp AMPS            &kp PIPE            &kp ASTERISK        &kp PLUS
                                                 &none               &trans              &trans          &trans              &trans              &trans
@@ -636,7 +619,7 @@
 
 		    numbers_functions_us_layer {
 		bindings = <
-		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BKSP
+		&kp DOT             &kp N7              &kp N8              &kp N9             &trans          &kp F10             &kp F7              &kp F8              &kp F9              &kp BSPC
         &kp N0              &kp N1              &kp N2              &kp N3             &trans          &magic_sync         &kp F4              &kp F5              &kp F6              &kp F11
         &kp COMMA           &kp N4              &kp N5              &kp N6             &trans          &linux_reboot       &kp F1              &kp F2              &kp F3              &kp F12
                                                 &trans              &trans             &trans          &trans              &trans              &trans
@@ -659,4 +642,3 @@
     };
 
 };
-
