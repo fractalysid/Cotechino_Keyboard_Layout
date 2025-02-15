@@ -556,7 +556,17 @@
 *   GAMING
 *********************************************/
 
-           	gaming_layer {
+            gaming_layer {
+        bindings = <
+        &kp LCTRL                &kp S               &kp D               &kp F               &kp TAB         NONE_ROW
+        &kp Q                    &kp W               &kp E               &kp R               &kp T           NONE_ROW
+        &kp LSHIFT               &kp X               &kp C               &kp V               &kp B           NONE_ROW
+                                                     &kp SPACE           &kp ESC             &none           &none               &to DEFAULT         &kp RET
+        >;
+        };
+
+
+/*           	gaming_layer {
     	bindings = <
     	&kp TAB             &kp Q               &kp W               &kp E               &kp R           &kp T               &kp Y               &kp U               &kp I               &kp O
     	&kp LSHIFT          &kp A               &kp S               &kp D               &kp F           &kp G               &kp J               &kp K               &kp L               &kp P
@@ -565,7 +575,7 @@
     	>;
     	};
 
-/*            gaming_layer {
+            gaming_layer {
         bindings = <
         &kp Q               &kp W               &kp E               &kp R               &kp T           &kp T               &kp Y               &kp U               &kp I               &kp O
         &kp LSHIFT          &kp Z               &kp X               &kp C               &kp B           &kp G               &kp J               &kp K               &kp L               &kp P
