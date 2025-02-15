@@ -57,6 +57,11 @@
     //retro-tap;
 };
 
+// Caps Word configuration for italian
+&caps_word {
+    continue-list = <IT_UNDER IT_MINUS>;
+};
+
 / {
 
 /********************************************************
@@ -441,7 +446,7 @@
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
-		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT COMMA       &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
+		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT COMMA      &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
                                                 &qlt SYMBOLS RET    &mo MEDIA_NUMPAD    &none           &none               &mo KEYBOARD        &lt UTILITY SPACE
 		>;
 		};
