@@ -13,6 +13,12 @@
 #include "./emails.h"
 #include "./pwds.h"
 
+// Mouse Emulation feature
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 1500  // default: 600
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 20    // default: 10
+
+#include <dt-bindings/zmk/pointing.h>
+
 /***************************
 *        LAYER CODES       *
 ****************************/
@@ -491,15 +497,15 @@
 		};
 
 /******************************************
- *              KEYBOARD                  *
+ *            KEYBOARD & MOUSE            *
  *****************************************/
 // reset and bootloader must be present on both sides as they only work on the side where they are pressed
 		    keyboard_layer {
 		bindings = <
-		&none               &none               &none               &none               &none           &out OUT_USB        &kp PRINTSCREEN     &kp KP_NUMLOCK      &kp CAPS            &kp INSERT
-		&none               &none               &none               &none               &none           &out OUT_BLE        &bt BT_SEL 0        &bt BT_SEL 1        &bt BT_SEL 2        &bt BT_SEL 3
-		&none               &none               &none               &none               &none           &bt BT_CLR          &none               &none               &bt BT_SEL 5        &bt BT_SEL 4
-                                                &trans              &trans              &none           &none               &none               &trans
+		&kp INSERT          &kp PRINTSCREEN     &kp KP_NUMLOCK      &kp CAPS            &out OUT_USB            &none               &mkp LCLK           &mkp RCLK           &mkp MCLK           &none
+		&bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &out OUT_BLE            &none               &mmv MOVE_LEFT      &mmv MOVE_UP        &mmv MOVE_DOWN      &mmv MOVE_RIGHT
+		&bt BT_SEL 4        &bt BT_SEL 5        &none               &none               &bt BT_CLR              &none               &msc SCRL_LEFT      &msc SCRL_UP        &msc SCRL_DOWN      &msc SCRL_RIGHT
+                                                &trans              &trans              &none                   &none               &none               &trans
 		>;
 		};
 
