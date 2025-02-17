@@ -65,7 +65,7 @@
 
 // Caps Word configuration for italian
 &caps_word {
-    continue-list = <IT_UNDER IT_MINUS>;
+    continue-list = <IT_UNDER IT_MINUS BACKSPACE>;
 };
 
 / {
