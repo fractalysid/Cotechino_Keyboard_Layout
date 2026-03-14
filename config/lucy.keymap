@@ -4,6 +4,13 @@
  * SPDX-License-Identifier: MIT
  */
 
+/********************
+ * Cotechino Layout *
+ *                  *
+ * Date: 2026-03-14 *
+ * v1.0.1           *
+ *                  *
+ ********************/
 #include "./boards/shields/lucy/italian.keycodes"
 
 #include <behaviors.dtsi>
@@ -463,10 +470,10 @@
 
 		    utility_layer {
 		bindings = <
-		&kp ESC             &none               &none               &caps_word          &none           &kp PAGE_UP         &kp HOME            &kp END             &none               &kp DEL
+		&kp ESC             &none               &kp KP_NUMLOCK      &caps_word          &none           &kp PAGE_UP         &kp HOME            &kp END             &kp LC(SPACE)       &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
 		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LC(LS(TAB))     &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
-                                                &trans              &trans              &none           &none               &none
+                                                &kp LS(RET)         &trans              &none           &none               &none
 		>;
 		};
 
