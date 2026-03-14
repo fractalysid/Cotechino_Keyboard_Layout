@@ -11,6 +11,9 @@
  * v1.0.1           *
  *                  *
  ********************/
+// Versione del layout
+#define LAYOUT_VERSION &kp N1 &kp DOT &kp N0 &kp DOT &kp N1
+
 #include "./boards/shields/lucy/italian.keycodes"
 
 #include <behaviors.dtsi>
@@ -18,10 +21,10 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/bt.h>
 #include "./emails.h"
-#include "./pwds.h"
+#include "./secrets.h"
 
 // Mouse Emulation feature
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 600  // default: 600
+#define ZMK_POINTING_DEFAULT_MOVE_VAL 700  // default: 600
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 10    // default: 10
 
 #include <dt-bindings/zmk/pointing.h>
@@ -38,9 +41,9 @@
 
 #define NUM_FUNC                3
 
-#define KEYBOARD                4
+#define MOUSE                   4
 
-#define MEDIA_NUMPAD            5
+#define KEYBOARD                5
 
 #define EXTRA                   6
 
@@ -83,9 +86,9 @@
 
     macros {
 
-    /**********************************
-    *      MACROS typing emails       *
-    ***********************************/
+    /**************************
+    *      TYPING MACROS      *
+    ***************************/
 
            mb_gmail: mb_gmail {
                compatible = "zmk,behavior-macro";
@@ -99,15 +102,21 @@
                    ;
            };
 
-    /**********************************
-    *     MACROS typing passwords     *
-    ***********************************/
+           layout_version: curr_version {
+                compatible = "zmk,behavior-macro";
+                #binding-cells = <0>;
+                wait-ms = <20>;
+                tap-ms = <10>;
+                bindings
+                    = <
+                    LAYOUT_VERSION
+                    >
+                    ;
+           };
 
-
-
-    /**********************************
-    *       Other generic macros      *
-    ***********************************/
+    /******************************
+    *       GENERIC MACROS        *
+    *******************************/
 
            magic_sync: magic_sysrq_sync {
                 compatible = "zmk,behavior-macro";
@@ -239,7 +248,7 @@
         };
 
         extra2_layer {
-            if-layers = <MEDIA_NUMPAD KEYBOARD>;
+            if-layers = <KEYBOARD MOUSE>;
             then-layer = <EXTRA>;
         };
 
@@ -264,8 +273,8 @@
         as: auto_shift {
                     compatible = "zmk,behavior-hold-tap";
                     #binding-cells = <2>;
-                    tapping_term_ms = <180>;
-                    quick_tap_ms = <125>;
+                    tapping-term-ms = <180>;
+                    quick-tap-ms = <125>;
                     global-quick-tap;
                     flavor = "tap-preferred";
                     bindings = <&kp>, <&kp>;
@@ -288,7 +297,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;    // 250
-            quick_tap_ms = <80>;
+            quick-tap-ms = <80>;
             flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = <5 6 7 8 9 15 16 17 18 19 25 26 27 28 29>;    // <---[[right-hand keys]]
@@ -298,7 +307,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             tapping-term-ms = <200>;    //250
-            quick_tap_ms = <80>;
+            quick-tap-ms = <80>;
             flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
             hold-trigger-key-positions = <0 1 2 3 4 10 11 12 13 14 20 21 22 23 24>;    // <---[[left-hand keys]]
@@ -454,33 +463,33 @@
 /*********************************************
 *       DEFAULT layer with COLEMAK-DH        *
 **********************************************/
-
+//  0
        		default_layer {
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &bspc_del
 		&kp A               &kp R               &kp S               &kp T               &kp G           &kp M               &kp N               &kp E               &kp I               &kp O
 		&lm LSHIFT Z        &lm LCTRL X         &lm LALT C          &lm LGUI D          &kp V           &kp K               &rm LGUI H          &rm LALT COMMA      &rm LCTRL DOT       &rm LSHIFT IT_SQUOT
-                                                &qlt SYMBOLS RET    &mo MEDIA_NUMPAD    &none           &none               &mo KEYBOARD        &lt UTILITY SPACE
+                                                &qlt SYMBOLS RET    &mo KEYBOARD        &none           &none               &mo MOUSE           &lt UTILITY SPACE
 		>;
 		};
 
 /*********************************************
 *               UTILITY LAYER                *
 *********************************************/
-
+// 1
 		    utility_layer {
 		bindings = <
-		&kp ESC             &none               &kp KP_NUMLOCK      &caps_word          &none           &kp PAGE_UP         &kp HOME            &kp END             &kp LC(SPACE)       &kp DEL
+		&kp ESC             &kp LS(RET)         &kp CAPS            &caps_word          &none           &kp PAGE_UP         &kp HOME            &kp END             &kp LC(SPACE)       &kp DEL
 		&kp TAB             &sk LALT            &sk LCTRL           &sk LSHIFT          &sk LGUI        &kp LA(TAB)         &kp LEFT            &kp UP              &kp DOWN            &kp RIGHT
 		&kp LC(Z)           &kp LC(X)           &kp LC(C)           &kp LC(V)           &kp LC(LS(Z))   &kp PAGE_DOWN       &kp LC(LS(TAB))     &kp LC(LA(LEFT))    &kp LC(LA(RIGHT))   &kp LC(TAB)
-                                                &kp LS(RET)         &trans              &none           &none               &none
+                                                &trans              &trans              &none           &none               &none
 		>;
 		};
 
 /*********************************************
 *                   SYMBOLS                  *
 *********************************************/
-
+// 2
            symbols_layer {
 		bindings = <
 		&kp IT_EXCL         &kp IT_DQUOT        &kp IT_AGRV         &kp IT_UGRV         &kp IT_CARET    &kp IT_BSLH         &kp IT_AT           &kp IT_HASH         &kp IT_QUES         &kp LC(BSPC)
@@ -493,7 +502,7 @@
 /*********************************************
 *              NUMBERS/FUNCTIONS             *
 *********************************************/
-
+// 3 <- 1+2
 		    numbers_functions_layer {
 		bindings = <
 		&kp DOT             &kp N7              &kp N8              &kp N9              &kp KP_PLUS          &kp F10             &kp F7              &kp F8              &kp F9              &kp BSPC
@@ -506,12 +515,12 @@
 /******************************************
  *            KEYBOARD & MOUSE            *
  *****************************************/
-// reset and bootloader must be present on both sides as they only work on the side where they are pressed
-		    keyboard_layer {
+// 4
+ 		    mouse_layer {
 		bindings = <
-		&kp INSERT          &kp PRINTSCREEN     &kp KP_NUMLOCK      &kp CAPS            &out OUT_USB            &none               &mkp LCLK           &mkp RCLK           &mkp MCLK           &none
-		&bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &out OUT_BLE            &none               &mmv MOVE_LEFT      &mmv MOVE_UP        &mmv MOVE_DOWN      &mmv MOVE_RIGHT
-		&bt BT_SEL 4        &bt BT_SEL 5        &none               &none               &bt BT_CLR              &none               &msc SCRL_LEFT      &msc SCRL_UP        &msc SCRL_DOWN      &msc SCRL_RIGHT
+		&kp INSERT          &kp PRINTSCREEN     &kp KP_NUMLOCK      &none               &none                   &none               &mkp LCLK           &mkp RCLK           &mkp MCLK           &none
+		&none               &none               &none               &none               &none                   &none               &mmv MOVE_LEFT      &mmv MOVE_UP        &mmv MOVE_DOWN      &mmv MOVE_RIGHT
+		&none               &none               &none               &none               &none                   &none               &msc SCRL_LEFT      &msc SCRL_UP        &msc SCRL_DOWN      &msc SCRL_RIGHT
                                                 &trans              &trans              &none                   &none               &none               &trans
 		>;
 		};
@@ -519,17 +528,12 @@
 /*********************************************
 *               MEDIA & NUMPAD               *
 *********************************************/
-
-// TODO: missing K_STOP2
-/**
- * NOTES:
- * - C_REWIND and C_FAST_FORWARD don't work
- */
-            media_numpad_layer {
+// 5
+            keyboard_layer {
         bindings = <
-        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
-        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &bt BT_SEL 5        &out OUT_BLE    &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
-        &bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &bt BT_CLR      &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
+        &bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &out OUT_BLE    &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
+        &bt BT_SEL 4        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
+        &bt BT_SEL 5        &bt BT_SEL 6        &none               &none               &bt BT_CLR      &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
                                                 &trans              &none               &none           &none                 &trans              &trans
         >;
         };
@@ -537,7 +541,8 @@
 /*********************************************
 *                   EXTRA                    *
 *********************************************/
-
+// 6 <- 5+4
+//
 /********
  * TODO: use this layer for macros
  * - insert email
@@ -546,7 +551,7 @@
             extra_layer {
         bindings = <
         &mb_gmail           &none               &none               &none               &magic_sync     &none                 &none               &none               &none               &none
-        &to GAMING          &to QWERTY          &to DEFAULT_US      &none               &linux_reboot   &none                 &kp RET             &kp SPC             &none               &none
+        &to GAMING          &to QWERTY          &to DEFAULT_US      &layout_version     &linux_reboot   &none                 &kp RET             &kp SPC             &none               &none
         &none               &none               &none               &none               &none           &none                 &none               &none               &none               &none
                                                 &trans              &none               &none           &none                 &none               &trans
         >;

@@ -6,3 +6,5 @@ italian_accented.txt
 .idea/
 config/emails.h
 config/pwds.h
+config/secrets.h
+
