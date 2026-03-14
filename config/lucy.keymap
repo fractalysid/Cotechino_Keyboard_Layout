@@ -527,9 +527,9 @@
  */
             media_numpad_layer {
         bindings = <
-        &kp C_BRI_DEC       &kp C_BRI_INC       &kp K_VOLUME_DOWN   &kp K_VOLUME_UP     &kp K_MUTE      &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
-        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &kp C_FF        &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
-        &none               &none               &none               &none               &none           &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
+        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
+        &kp C_REWIND        &kp K_PREV          &kp K_PLAY_PAUSE    &bt BT_SEL 5        &out OUT_BLE    &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
+        &bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &bt BT_CLR      &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
                                                 &trans              &none               &none           &none                 &trans              &trans
         >;
         };
