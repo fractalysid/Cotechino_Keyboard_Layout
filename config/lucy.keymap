@@ -255,7 +255,7 @@
         mouse_layer {
             if-layers = <SYMBOLS KEYBOARD>;
             then-layer = <MOUSE>;
-        }
+        };
 
         numfn_us_layer {
             if-layers = <UTILITY_US SYMBOLS_US>;
@@ -469,7 +469,9 @@
 *       DEFAULT layer with COLEMAK-DH        *
 **********************************************/
 // 0
-
+/**
+ * SOSTITUIRE BACKSPACE NEL MIGNOLO CON ';'
+ */
        		default_layer {
 		bindings = <
 		&kp Q               &kp W               &kp F               &kp P               &kp B           &kp J               &kp L               &kp U               &kp Y               &kp BACKSPACE
