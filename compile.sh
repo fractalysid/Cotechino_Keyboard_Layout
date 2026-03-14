@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Absolute path of your local zmk repo
-ZMK_DIR="/home/mattia/Documenti/Keyboards/firmwares/zmk/"
+ZMK_DIR="/mnt/data/projects/electronics/firmwares/keyboards/zmk"
+BOARD_NAME="nice_nano"
 #"/media/mattia/data/System/Firmwares/Keyboards/zmk/"
 #"/home/mattia/Documenti/Keyboards/firmwares/zmk/"
 
@@ -10,26 +11,27 @@ L_SHIELD="lucy_v02_left"
 R_SHIELD="lucy_v02_right"
 
 # Absolute path of your Twive config
-CONFIG="/home/mattia/Documenti/Keyboards/layouts/Cotechino/config"
+CONFIG="/mnt/data/projects/electronics/Keyboards/layouts/Cotechino/config"
 
 LEFT_BUILD_DIR="${L_SHIELD}"
 RIGHT_BUILD_DIR="${R_SHIELD}"
 
 # Firwmare output absolute path (no trailing /)
-OUTPUT="/home/mattia/Documenti/Keyboards/firmwares/Lucy v0.2/Cotechino"
-#"/media/mattia/data/System/Firmwares/Keyboards/Lucy v0.2/Cotechino"
-#"/home/mattia/Documenti/Keyboards/firmwares/Lucy v0.2/Cotechino"
-
+OUTPUT="/mnt/data/projects/electronics/firmwares/keyboards/Lucy_v0.2/Cotechino"
 
 cd "$ZMK_DIR"
 
-source zephyr/zephyr-env.sh
+source .venv/bin/activate
+#source zephyr/zephyr-env.sh
 
 cd app
 
-west build -p -d build/$LEFT_BUILD_DIR -b nice_nano_v2 -- -DSHIELD=$L_SHIELD -DZMK_CONFIG=$CONFIG \
+#ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.16.4
+export ZEPHYR_TOOLCHAIN_VARIANT="16.4"
+
+west build -p -b $BOARD_NAME -d build/$LEFT_BUILD_DIR -- -DDTC_OVERLAY_FILE="" -DDTC=$(which dtc) -DSHIELD=$L_SHIELD -DZMK_CONFIG=$CONFIG -DZEPHYR_TOOLCHAIN_VARIANT=zephyr -DZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.16.4 \
 && mv build/$LEFT_BUILD_DIR/zephyr/zmk.uf2 "$OUTPUT/left.uf2" \
-&& west build -p -d build/$RIGHT_BUILD_DIR -b nice_nano_v2 -- -DSHIELD=$R_SHIELD -DZMK_CONFIG=$CONFIG \
+&& west build -p -b $BOARD_NAME -d build/$RIGHT_BUILD_DIR -- -DDTC_OVERLAY_FILE="" -DDTC=$(which dtc) -DSHIELD=$R_SHIELD -DZMK_CONFIG=$CONFIG -DZEPHYR_TOOLCHAIN_VARIANT=zephyr -DZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.16.4 \
 && mv build/$RIGHT_BUILD_DIR/zephyr/zmk.uf2 "$OUTPUT/right.uf2"
 
 # For QMK
