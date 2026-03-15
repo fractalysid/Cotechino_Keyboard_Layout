@@ -7,12 +7,12 @@
 /********************
  * Cotechino Layout *
  *                  *
- * Date: 2026-03-14 *
- * v1.0.2           *
+ * Date: 2026-03-15 *
+ * v1.0.3           *
  *                  *
  ********************/
 // Versione del layout
-#define LAYOUT_VERSION &kp N1 &kp DOT &kp N0 &kp DOT &kp N2
+#define LAYOUT_VERSION &kp N1 &kp DOT &kp N0 &kp DOT &kp N3
 
 #include "./boards/shields/lucy/italian.keycodes"
 
@@ -41,9 +41,9 @@
 
 #define NUM_FUNC                3
 
-#define MOUSE                   4
+#define KEYBOARD                4
 
-#define KEYBOARD                5
+#define MOUSE                   5
 
 #define EXTRA                   6
 
@@ -520,31 +520,31 @@
 		>;
 		};
 
-/******************************************
- *            KEYBOARD & MOUSE            *
- *****************************************/
-// 4
- 		    mouse_layer {
-		bindings = <
-		&kp INSERT          &kp PRINTSCREEN     &kp KP_NUMLOCK      &none               &none                   &none               &mkp LCLK           &mkp RCLK           &mkp MCLK           &none
-		&none               &none               &none               &none               &none                   &none               &mmv MOVE_LEFT      &mmv MOVE_UP        &mmv MOVE_DOWN      &mmv MOVE_RIGHT
-		&none               &none               &none               &none               &none                   &none               &msc SCRL_LEFT      &msc SCRL_UP        &msc SCRL_DOWN      &msc SCRL_RIGHT
-                                                &trans              &trans              &none                   &none               &none               &trans
-		>;
-		};
-
 /*********************************************
-*               MEDIA & NUMPAD               *
+*                  KEYBOARD                  *
 *********************************************/
-// 5
+// 4
             keyboard_layer {
         bindings = <
         &bt BT_SEL 3        &bt BT_SEL 2        &bt BT_SEL 1        &bt BT_SEL 0        &out OUT_BLE    &kp KP_DIVIDE         &kp KP_N7           &kp KP_N8           &kp KP_N9           &kp BSPC
         &bt BT_SEL 4        &kp K_PREV          &kp K_PLAY_PAUSE    &kp K_NEXT          &out OUT_USB    &kp KP_MULTIPLY       &kp KP_N1           &kp KP_N2           &kp KP_N3           &kp KP_N0
         &bt BT_SEL 5        &bt BT_SEL 6        &none               &none               &bt BT_CLR      &kp KP_DOT            &kp KP_N4           &kp KP_N5           &kp KP_N6           &kp KP_COMMA
-                                                &trans              &none               &none           &none                 &lt MOUSE           &trans
+                                                &trans              &none               &none           &none                 &lt EXTRA           &trans
         >;
         };
+
+/******************************************
+*                 MOUSE                  *
+*****************************************/
+// 5
+            mouse_layer {
+		bindings = <
+		&kp INSERT          &kp PRINTSCREEN     &kp KP_NUMLOCK      &none               &none                   &none               &mkp LCLK           &mkp RCLK           &mkp MCLK           &none
+		&none               &none               &none               &none               &none                   &none               &mmv MOVE_LEFT      &mmv MOVE_UP        &mmv MOVE_DOWN      &mmv MOVE_RIGHT
+		&none               &none               &none               &none               &none                   &none               &msc SCRL_LEFT      &msc SCRL_UP        &msc SCRL_DOWN      &msc SCRL_RIGHT
+                                                        &trans              &trans              &none                   &none               &none               &trans
+		>;
+		};
 
 /*********************************************
 *                   EXTRA                    *
