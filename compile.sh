@@ -29,6 +29,10 @@ cd app
 #export ZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.14.2
 #export ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 
+# Per compilare il firmware di reset delle impostazioni BT
+#west build -p -b $BOARD_NAME -d build/$LEFT_BUILD_DIR -- -DDTC_OVERLAY_FILE="" -DDTC=$(which dtc) -DSHIELD=settings_reset -DZMK_CONFIG=$CONFIG -DZEPHYR_TOOLCHAIN_VARIANT=zephyr -DZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.16.4
+#exit
+
 #west build -p -b $BOARD_NAME -d build/$LEFT_BUILD_DIR -- -DDTC_OVERLAY_FILE="" -DDTC=$(which dtc) -DSHIELD=$L_SHIELD -DZMK_CONFIG=$CONFIG -DZEPHYR_TOOLCHAIN_VARIANT=zephyr -DZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.14.2 \
 west build -p -b $BOARD_NAME -d build/$LEFT_BUILD_DIR -- -DDTC_OVERLAY_FILE="" -DDTC=$(which dtc) -DSHIELD=$L_SHIELD -DZMK_CONFIG=$CONFIG -DZEPHYR_TOOLCHAIN_VARIANT=zephyr -DZEPHYR_SDK_INSTALL_DIR=/opt/zephyr-sdk-0.16.4 \
 && mv build/$LEFT_BUILD_DIR/zephyr/zmk.uf2 "$OUTPUT/left.uf2" \
