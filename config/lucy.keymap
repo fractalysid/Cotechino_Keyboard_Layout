@@ -8,11 +8,11 @@
  * Cotechino Layout *
  *                  *
  * Date: 2026-03-15 *
- * v1.0.3           *
+ * v1.1.0           *
  *                  *
  ********************/
 // Versione del layout
-#define LAYOUT_VERSION &kp N1 &kp DOT &kp N0 &kp DOT &kp N3
+#define LAYOUT_VERSION &kp N1 &kp DOT &kp N1 &kp DOT &kp N0
 
 #include "./boards/shields/lucy/italian.keycodes"
 #include "./emails.h"
